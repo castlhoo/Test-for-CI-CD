@@ -1,2 +1,2 @@
 # Test-for-CI-CD
-Test for CI/CD, Pipelin
+Test for CI/CD
