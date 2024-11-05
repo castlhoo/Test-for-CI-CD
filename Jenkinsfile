@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
-        ARGOCD_SERVER = 'https://localhost:8091'  // 접두사 제거
         ARGOCD_AUTH_TOKEN = credentials('argocd-auth-token')
     }
 
@@ -33,8 +32,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    argocd login ${ARGOCD_SERVER} --insecure --grpc-web --username admin --password ${ARGOCD_AUTH_TOKEN}
-                    argocd app sync pipelinetest --auth-token=${ARGOCD_AUTH_TOKEN} --server=${ARGOCD_SERVER}
+                    argocd login localhost:8091 --insecure --grpc-web --username admin --password ${ARGOCD_AUTH_TOKEN}
+                    argocd app sync pipelinetest --auth-token=${ARGOCD_AUTH_TOKEN} --server=localhost:8091
                     """
                 }
             }
