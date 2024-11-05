@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'argocd-auth-token', variable: 'ARGOCD_AUTH_TOKEN')]) {
                     sh """
-                    argocd login localhost:8091 --insecure --grpc-web --username admin --password $ARGOCD_AUTH_TOKEN
+                    argocd login localhost:8090 --insecure --grpc-web --username admin --password $ARGOCD_AUTH_TOKEN
                     argocd app sync pipelinetest --auth-token=$ARGOCD_AUTH_TOKEN --server=localhost:8090
                     """
                 }
