@@ -2,9 +2,10 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
-        ARGOCD_SERVER = 'https://localhost:8089'  // ArgoCD 서버 주소
+        ARGOCD_SERVER = 'https://localhost:8090'  // 포트 8090으로 수정
         ARGOCD_AUTH_TOKEN = credentials('argocd-auth-token')
     }
+
     stages {
         stage('Checkout') {
             steps {
@@ -32,8 +33,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                        argocd login ${ARGOCD_SERVER} --insecure --grpc-web --username admin --password ${ARGOCD_AUTH_TOKEN}
-                        argocd app sync pipelinetest --auth-token=${ARGOCD_AUTH_TOKEN} --server=${ARGOCD_SERVER}
+                    argocd login ${ARGOCD_SERVER} --insecure --grpc-web --username admin --password ${ARGOCD_AUTH_TOKEN}
+                    argocd app sync pipelinetest --auth-token=${ARGOCD_AUTH_TOKEN} --server=${ARGOCD_SERVER}
                     """
                 }
             }
