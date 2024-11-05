@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
-        ARGOCD_SERVER = 'localhost:8090'  // 접두사 제거
+        ARGOCD_SERVER = 'localhost:8089'  // 접두사 제거
         ARGOCD_AUTH_TOKEN = credentials('argocd-auth-token')
     }
 
