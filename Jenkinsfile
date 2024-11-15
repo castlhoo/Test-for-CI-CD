@@ -6,6 +6,7 @@ pipeline {
         DOCKER_TAG = "${BUILD_NUMBER}"
         ARGOCD_CREDENTIALS = credentials('argocd-auth')
         KUBE_CONFIG = credentials('eks-kubeconfig')
+        GIT_CREDENTIALS = credentials('github-token')
     }
     stages {
         stage('Checkout') {
@@ -34,6 +35,9 @@ pipeline {
                     sh """
                         git config user.email "jenkins@example.com"
                         git config user.name "Jenkins"
+                        
+                        # GitHub 토큰으로 remote URL 업데이트
+                        git remote set-url origin https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/castlhoo/Test-for-CI-CD.git
                         
                         # Git pull 전략 설정
                         git config pull.rebase false
