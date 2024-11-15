@@ -55,7 +55,7 @@ pipeline {
                         argocd login ab43828f8bac94f8b9d8bd97a8d579c0-700015596.ap-northeast-2.elb.amazonaws.com --username ${ARGOCD_CREDENTIALS_USR} --password ${ARGOCD_CREDENTIALS_PSW} --insecure
                         argocd app sync pipelinetest-app --prune
                         argocd app wait pipelinetest-app --health
-                        argocd logout
+                        argocd logout ab43828f8bac94f8b9d8bd97a8d579c0-700015596.ap-northeast-2.elb.amazonaws.com
                     """
                 }
             }
