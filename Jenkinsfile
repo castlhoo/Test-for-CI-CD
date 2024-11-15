@@ -7,6 +7,7 @@ pipeline {
         ARGOCD_CREDENTIALS = credentials('argocd-auth')
         KUBE_CONFIG = credentials('eks-kubeconfig')
         GIT_CREDENTIALS = credentials('github-token')
+        ARGOCD_SERVER = "ab43828f8bac94f8b9d8bd97a8d579c0-700015596.ap-northeast-2.elb.amazonaws.com"
     }
     stages {
         stage('Checkout') {
