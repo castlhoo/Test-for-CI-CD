@@ -9,6 +9,22 @@ pipeline {
         GIT_CREDENTIALS = credentials('github-token')
     }
     stages {
+        stage('Check Commit Message') {
+            steps {
+                script {
+                    def commitMessage = sh(
+                        script: 'git log -1 --pretty=%B',
+                        returnStdout: true
+                    ).trim()
+                    
+                    // deployment 업데이트 커밋이면 빌드 중단
+                    if (commitMessage.startsWith("Update deployment to version")) {
+                        currentBuild.result = 'ABORTED'
+                        error("Skipping build for deployment update commit")
+                    }
+                }
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout scm
