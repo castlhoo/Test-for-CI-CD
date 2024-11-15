@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pipelinetest-app
-        image: castlehoo/pipelinetest_image:27
+        image: castlehoo/pipelinetest_image:28
         ports:
         - containerPort: 8080
         resources:
